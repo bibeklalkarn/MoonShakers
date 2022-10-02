@@ -1,4 +1,4 @@
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fbibeklalkarn.github.io%2FMoonShakers%2F&count_bg=%233DABC8&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
 # MoonShakers
 MoonShakers is an interactive 3D lunar globe on a web app using globe.gl API and used seismic geophysical data transmitted back to Earth by several instruments left behind by NASA’s Apollo astronauts. Specifically, we used dataset named nakamura_1979_sm_locations.csv. We added data on points layer and attached ripple effect at each point to show moonquake propagation. The datasets we used contained a total of 28 moonquake locations with their times. We have taken the magnitude instead of the depth of such waves. Our approach might help people seek a greater view using a 3d digital lunar globe and seismic waves using color concentration. We have added a vibration sound effect, and actual vibration of mobile devices, making it entertaining and interactive.
 
@@ -11,7 +11,7 @@ MoonShakers is an interactive 3D lunar globe on a web app using globe.gl API and
 Our project uses the globe.gl web component which is based on Web.gl and Three.js to make an interactive 3D globe. It creates an interactive globe on a web browser on a desktop or a mobile device. The globe can be rotated as well as zoomed in for better visualization. We have tried to depict the location and the magnitude of moonquakes through various mediums such as visual, audio, and physical representations.
 
 
-#### <ins> Visual representation </ins>  
+#### <ins>1. Visual representation </ins>  
 
 
 ##### Label  
@@ -28,9 +28,13 @@ Ripple color represents the increasing severity of moonquakes. Ripple color prov
 The ripple concentration is inversely proportional to the magnitude of the moonquakes. It signifies a higher frequency for a higher magnitude of moonquakes.
 ##### Fading Ripples
 As the shaking of a real moonquake would fade over a distance, the ripples of the moonquakes in our web app fade to zero as it reaches the maximum ripple radius defined in the sections above.
-#### <ins >Audio Representation </ins>
+
+#### <ins >2. Audio Representation </ins>
 We have used a vibration sound effect to denote the severity of moonquakes. The audio is played when clicking on the label of moonquakes on the globe. The audio is taken from freesoundeffects.com. The audio play duration is proportional to the scale (defined above) of the moonquake. The exact duration of the sound being played is 500ms×(scale+1). We added ‘1’ to the scale as our first scale is ‘0’ and if ‘1’ is not added it implies that the audio will not be played. And, we chose scale over magnitude as magnitudes give unnecessary variability of sound duration which we cannot even perceive properly. And, choosing a scale also provides consistency with the colors used.
-#### <ins> Physical Representation </ins>
+
+#### <ins>3. Physical Representation </ins>
 The physical representation of the moonquake is done by the vibration of the device. We have used the Vibration API for vibrating devices for a particular duration to represent a moonquake. The device vibrates when clicking on the label of moonquakes on the globe. Currently, Vibration API is only supported on Android devices so you may not feel the vibration when used on ios devices. (Since the label layer is below the ring layer, you might have to multiple times to touch the label on mobile devices)
 
+### Total website clicks 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=http%3A%2F%2Fbibeklalkarn.github.io%2FMoonShakers%2F&count_bg=%233DABC8&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 

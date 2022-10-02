@@ -1,0 +1,79 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script src="//unpkg.com/d3-array"></script>
+  <script src="//unpkg.com/d3-scale"></script>
+
+  <script src="//unpkg.com/globe.gl"></script>
+
+</head>
+
+<body>
+<div id="globeViz"></div>
+<form> 
+  <input type="checkbox" name = "sound1" value = "Sound">
+
+</form>
+<script>
+  
+  const colorScale = d3.scaleOrdinal([t => `rgba(0,102,255,${Math.sqrt(1-t)})`, t => `rgba(0,120,0,${Math.sqrt(1-t)})`,t => `rgba(255,200,2,${Math.sqrt(1-t)})`, t => `rgba(255,42,4,${Math.sqrt(1-t)})`]);
+
+
+  const elem = document.getElementById('globeViz');
+
+  const moon = Globe()
+    .globeImageUrl('./lroc_color_poles_8k.jpg')
+    .bumpImageUrl('./ldem_3_8bit.jpg')
+    .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+    .showGraticules(false)
+    .showAtmosphere(true)
+    .atmosphereColor("grey")
+    .atmosphereAltitude("0.2")
+
+    .labelText(d => `${d.label}`)
+    .labelColor(() => "black")
+    .labelSize(2.5)
+    .labelDotRadius(0.3)
+
+    .labelLabel(d => `
+        <div>Moonquake No. <b>${d.label}</b></div>
+        <div> Magnitude : <b>${d.magnitude}</b></div>
+        <div> Lat, Long : <b>${d.lat}</b>\u00B0, <b>${d.lng}</b>\u00B0</div>
+        <div>Date: <i>${new Date(d.date).toLocaleDateString()}</i></div>
+        <div>Time: <i>${d.time}</i></div>
+      `)
+      .onLabelClick(d => vibratepattern(d.scale, "./vibrate_sound.wav"))
+
+    .ringColor(d => colorScale(d.scale))
+    .ringMaxRadius(d =>  6*(d.magnitude))
+    .ringPropagationSpeed(d => 2)
+    .ringRepeatPeriod(d => 1/(d.magnitude) *200 + 100)
+    
+    (elem);
+  fetch('./nakamurasmlocations.json').then(r => r.json()).then(landingSites => {
+    moon.labelsData(landingSites);
+  });
+  fetch('./nakamurasmlocations.json').then(r => r.json()).then(landingSites => {
+    moon.ringsData(landingSites);
+  });
+  
+</script>
+
+<script>
+  function vibratepattern(n, audio_path){
+    
+    navigator.vibrate(500*(n+1));
+    play(audio_path, n);
+    
+  }
+  function play(audio_path, ms){
+    let beep = new Audio(audio_path)
+    beep.loop = true;
+    beep.play();
+    setTimeout(() => {beep.pause();}, 500*(ms+1) );
+    
+  }
+</script>
+</body>
+
+

@@ -62,7 +62,8 @@
 <script>
   function vibratepattern(n, audio_path){
     
-    navigator.vibrate(500*(n+1));
+    const canVibrate = navigator.vibrate;
+    if (canVibrate) navigator.vibrate(500*(n+1));
     play(audio_path, n);
     
   }

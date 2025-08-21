@@ -35,5 +35,5 @@ We have used a vibration sound effect to denote the severity of moonquakes. The 
 #### <ins>3. Physical Representation </ins>
 The physical representation of the moonquake is done by the vibration of the device. We have used the Vibration API for vibrating devices for a particular duration to represent a moonquake. The device vibrates when clicking on the label of moonquakes on the globe. Currently, Vibration API is only supported on Android devices so you may not feel the vibration when used on ios devices. (Since the label layer is below the ring layer, you might have to multiple times to touch the label on mobile devices)
 
-### Page Live at [this]([https://bibeklalkarn.github.io/MoonShakers/]) link.
+### Page Live at https://bibeklalkarn.github.io/MoonShakers/.
 
